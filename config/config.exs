@@ -7,6 +7,9 @@
 # General application configuration
 import Config
 
+config :elixir_otel_sample,
+  ecto_repos: [ElixirOtelSample.Repo]
+
 # Configures the endpoint
 config :elixir_otel_sample, ElixirOtelSampleWeb.Endpoint,
   url: [host: "localhost"],
