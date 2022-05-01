@@ -7,15 +7,12 @@
 # General application configuration
 import Config
 
-config :elixir_otel_sample,
-  ecto_repos: [ElixirOtelSample.Repo]
-
 # Configures the endpoint
 config :elixir_otel_sample, ElixirOtelSampleWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: ElixirOtelSampleWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: ElixirOtelSample.PubSub,
-  live_view: [signing_salt: "4I7AJkZT"]
+  live_view: [signing_salt: "zi1QgA+U"]
 
 # Configure esbuild (the version is required)
 config :esbuild,
@@ -34,6 +31,13 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :opentelemetry, :resource, service: %{name: "elixir_otel_sample"}
+
+config :opentelemetry, :processors,
+  otel_batch_processor: %{
+    exporter: {:opentelemetry_exporter, %{endpoints: ["http://localhost:4318"]}}
+  }
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
