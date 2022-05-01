@@ -7,5 +7,7 @@ defmodule ElixirOtelSampleWeb.Router do
 
   scope "/api", ElixirOtelSampleWeb do
     pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
   end
 end
