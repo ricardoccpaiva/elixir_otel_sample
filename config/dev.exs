@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :elixir_otel_sample, ElixirOtelSample.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "password",
   hostname: "localhost",
   database: "elixir_otel_sample_dev",
   stacktrace: true,
